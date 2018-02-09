@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Comunidade{% endblock %}
+{% block conteudo %}
+	<style type="text/css">
+		.sobreodundo{
+			background-color: #fff; 
+		}
+		.call-outs-container-2 {
+		  	max-width: 1400px;
+		  	padding: 40px;
+		  	justify-content: space-around;
+		}
+		.call-out {
+			background-color: #fff;
+		  	margin-top: 70px;
+		  	margin-bottom: 90px;
+		}
+		.call-out li{
+			display:inline-flex;
+			margin: 20px; 
+		}
+		.call-out ul{
+			max-width: 600px;
+			margin: 0 auto;
+			text-align: center;
+			padding: 0px;
+		}
+		.call-out ul a{
+			text-decoration:none;
+		}
+		.call-out ul a:hover{
+			color: gray;
+		}
+		.icon{
+			font-size: 57px;
+		}
+		.icon:hover{
+			padding-right: 3px;
+		}
+		ul li a p{
+			width: 68px;
+		}
+		h3.text-center{
+			padding-bottom: 20px;
+			text-align: center;
+		}
+	</style>
+	<div class="sobreodundo">
+		<!-- third example -->
+		<div class="call-outs-container-2">
+			<h3 class="text-center">Comunidade</h3>
+			<div class="call-out">
+			   	<ul>
+			   		<li>
+			   		<a href="/comunidade/empresas"><i class="fa fa-building icon" aria-hidden="true"></i><br><p>Empresas</p></a>
+			   		</li>
+				    	<li>
+				    	<a href="/comunidade/galeria"><i class="fa fa-picture-o icon" aria-hidden="true"></i><br><p>Galeria</p></a>
+				    	</li>
+				    	<li>
+				    	<a href="/comunidade/eventos"><i class="fa fa-calendar icon" aria-hidden="true"></i><br><p>Eventos</p></a>
+				    	</li>
+				    	<li>
+				    	<a href="/comunidade/noticias"><i class="fa fa-newspaper-o icon" aria-hidden="true"></i><br><p>Noticias</p></a>
+				    	</li>
+			   </ul> 
+		  </div>
+		</div>
+	</div>
+{% endblock %}

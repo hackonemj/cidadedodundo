@@ -1,0 +1,86 @@
+{% extends "sidebar.html" %}
+
+{% load staticfiles %}
+
+{% block title %}{{ noticia.titulo }}{% endblock %}
+
+{% block sidecontent %}
+   <style type="text/css">
+      
+      #content-news{
+         display: flex;
+         padding: 0 0 10px 40px;
+         
+         /*padding: 10px 10px;
+         padding-bottom: 20px;*/
+      }
+      .call-outs-container-2 {
+         background-color: white;
+         flex-basis: 100%;
+         padding: 20px;
+         box-shadow: 0 1px 3px rgba(0,0,0,.4);
+         border-radius: 3px;
+      }
+      .img{
+         width: 100%;
+         height: 400px;
+      }
+      
+      @media only screen and (max-width: 890px) {
+         #content-news{
+           margin: 0px;
+           padding: 0px;
+         }
+         .img{
+           height: 300px;
+         }
+      }
+      @media (max-width: 500px) {
+         .call-outs-container-2 {
+            padding: 10px;
+         }
+         .main-content{
+            padding: 0px;
+         }
+         #content-news{
+           padding: 0px;
+         }
+      }
+   </style>
+
+  <div id="content-news">
+      <div class="call-outs-container-2">
+         <img class="img" src="{% if noticia.imagem_url %}{{ noticia.imagem_url }}{% else %}{% static "img/imagemindisponivel.jpg" %}{% endif %}">
+         <h3 style="padding-top: 10px">{{ noticia.titulo }}</h3>
+         <p class="date" style="text-align: center;">Publicado {{ noticia.publish }}</p>
+         <p class="date" style="text-align: center;">{% if noticia.fonte_noticia %}Fonte <b><a href="{{ noticia.fonte_url }}">{{ noticia.fonte_noticia }}</a></b> {% endif %}</p>
+         <br>
+         {{ noticia.noticia_texto|linebreaks }}
+
+         <div id="disqus_thread"></div>
+         <script>
+
+         /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+         /*
+         var disqus_config = function () {
+         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+         };
+         */
+         (function() { // DON'T EDIT BELOW THIS LINE
+         var d = document, s = d.createElement('script');
+         s.src = 'https://cidadedodundo.disqus.com/embed.js';
+         s.setAttribute('data-timestamp', +new Date());
+         (d.head || d.body).appendChild(s);
+         })();
+         </script>
+         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+         </noscript>
+      </div>
+   </div>
+{% endblock %}
+{% block javaScript %}
+ <script id="dsq-count-scr" src="//cidadedodundo.disqus.com/count.js" async></script>
+{% endblock %}

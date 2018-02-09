@@ -1,0 +1,546 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load noticia_count %}
+
+{% load static %} 
+
+{% load humanize %}
+<head>
+  {% block title %}Portal do Dundo{% endblock %}
+</head>
+
+
+{% block conteudo %}
+
+  <style type="text/css">
+    
+    #visitar{
+       background-color: #fff;
+    }
+    #news{
+     
+      background-color: #F7F7F7;
+    }
+    #eventos_pub{
+      background-color: #F7F7F7;
+      max-width: 1400px;
+    }
+    #news .section-content{
+      padding: 50px 0;
+    }
+    .card-news:hover{
+      box-shadow: 0 2px 3px 2px rgba(0, 0, 0, 0.19);
+    }
+    /* Caption text */
+    .text-card {
+      color: #f2f2f2;
+      font-size: 40px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-shadow: 6px 0 5px #333;
+      text-align: center;
+    }
+    .card-title,.text-card, h3{
+      
+    }
+
+    /*Reduzir padding da secção de visitas da cidade*/
+    .noPadding{
+      background-color: #F7F7F7;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+    .noPadding>.card-block{
+      padding: 0 20px;
+    }
+
+    .btn-success-outline {
+      color: cornflowerblue;
+      background-color: transparent;
+      border-color: cornflowerblue;
+    }
+    .btn-success-outline:hover{
+      background-color: cornflowerblue;
+      border-color: cornflowerblue;
+    }
+
+    .card-news:hover img, .card-news:focus img {
+      opacity: 0.6;
+      transition: 0.1s;
+    }
+    .cd-img-replace {
+      /* replace text with a background-image */
+      display: inline-block;
+      overflow: hidden;
+      text-indent: 100%;
+      white-space: nowrap;
+    }
+    .cd-scroll-down {
+      position: absolute;
+      left: 50%;
+      right: auto;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      bottom: 20px;
+      width: 38px;
+      height: 44px;
+      background: url('/static/img/cd-arrow-bottom.svg') no-repeat center center;
+    }
+    
+
+    /*----Galeria----*/
+    .card-img:hover {
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+
+    /* Event-layout */
+    .column-layout {
+      max-width: 1300px;
+      line-height: 1.65;
+      display: flex;
+    }
+
+    .publicity-side {
+      flex: 2;
+      order: 2;
+      padding-left: 30px;
+      margin-left: 15px;
+    }
+
+    .event-side {
+      flex: 4;
+      order: 1;
+    }
+
+    .column-layout>div>h3{
+      padding-top:20px; 
+      padding-bottom: 40px;
+    }
+
+
+    .mySlides {
+      display:none
+    }
+
+    /* Slideshow container */
+    .slideshow-contentor {
+      max-width: 1400px;
+      position: relative;
+      margin: auto;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      height: 13px;
+      width: 13px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: none;
+      transition: background-color 0.6s ease;
+    }
+
+    .active {
+      background-color: #717171;
+    }
+
+
+    @-webkit-keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+
+    .event-card{
+      background-color: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      margin-top:0px;
+      box-shadow: 0px 0px 1px 0px black;  
+    }
+
+    .card-img-event:hover{
+      opacity: 0.9;
+      transition: 0.3s;
+    }
+  
+    .event-layout {
+      display: flex;
+    }
+
+    .event-day-Rside {
+      flex: 2;
+      order: 1;
+    }
+
+    .event-detail-Lside {
+      flex: 4;
+      order: 2;
+    }
+    .event-dia-conatiner{
+      max-width: 600px;
+      
+    }
+    .span-name{
+      font-size: 16px;
+      font-weight: bolder;
+    }
+    .event-day{
+      width: 2.4rem;
+      color: white;
+      background-color: tomato;
+      text-align: center;
+      padding:0 5px;
+    }
+    .event-span-dia{
+      font-size: 22px;
+    }
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 873px) {
+      .text-card {
+        font-size: 18px;
+        bottom: 60%;
+      }
+      .cd-scroll-down{
+        width: 24px;
+        height: 44px;
+        bottom: 50%;
+      }
+      .column-layout {
+        display: grid;
+      }
+      .publicity-side {
+        width: 100%;
+        order: 2;
+        padding-left: 0px;
+        margin-left: 0px;
+      }
+
+      .event-side {
+        width: 100%;
+        order: 1;
+      }
+      .event-layout {
+        display: flex;
+      }
+
+    }
+
+
+
+  </style>
+
+  <section id='banner'>
+    <div class="contentor-slideshow">
+      <div class="meusSlides animated fade">
+        <img src="/static/img/cdundo-apt.jpg" alt="Cidade do Dundo">
+        <div class="text-card animated fadeInDown">Bem-vindo a Cidade do Dundo</div>
+      </div>
+
+      <div class="meusSlides animated fade">
+        <img src="/static/img/city.jpeg" alt="Museu do Dundo">
+        <div class="text-card animated slideInLeft">Exemplo 2</div>
+      </div>
+
+      <div class="meusSlides animated fade">
+        <img src="/static/img/sea-bay-waterfront-beach.jpeg" >
+        <div class="text-card animated fadeInDown">Exemplo 3</div>
+      </div>
+      <a class="cd-scroll-down cd-img-replace">scroll down</a>
+    </div>
+  </section>
+
+
+  <section id="visitar">
+    <div class="section-content">
+      <div class="container">
+        <h3>Visite a Cidade do Dundo</h3>
+        <br>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card-columns">
+              <div class="card">
+                <img class="card-img" src="/static/img/quarto1.jpg" alt="Quarto do hotel">
+              </div>
+              <div class="card card-block text-xs-center noPadding">
+                <div class="card-block">
+                  <h4 class="card-title">Alojamento</h4>
+                </div>
+
+                <blockquote class="card-blockquote">
+                  
+                  <div>
+                    <a href="/turismo/onde-ficar" class="btn btn-success-outline">Ver mais</a>
+                  </div>
+                </blockquote>
+              </div>
+
+              <div class="card">
+                <img class="card-img" src="/static/img/resort.jpg" alt="Lazer e diversão">
+              </div>
+              <div class="card card-block text-xs-center noPadding">
+                <div class="card-block">
+                  <h4 class="card-title">Lazer &amp; Diversão</h4>
+                </div>
+                <blockquote class="card-blockquote">
+                  
+                  <div>
+                    <a href="/turismo/lazer" class="btn btn-success-outline">Ver mais</a>
+                  </div>
+                </blockquote>
+              </div>
+
+              <div class="card">
+                <img class="card-img" src="/static/img/Obelisco.jpg" alt="Obelisco do Dundo">
+              </div>
+              <div class="card card-block text-xs-center noPadding">
+                <div class="card-block">
+                  <h4 class="card-title">Patrimónios</h4>
+                </div>
+                <blockquote class="card-blockquote">
+                  
+                  <div>
+                    <a href="/turismo/patrimonio" class="btn btn-success-outline">Ver mais</a>
+                  </div>
+                </blockquote>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="news">
+    <div class="section-content">
+      <div class="container news">
+        <h3>Últimas noticías</h3>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card-columns">
+            {% for noticia in noticias %}
+              <div class="card card-news">
+                <img src="{% if noticia.imagem_url %}{{ noticia.imagem_url }}{% else %}{% static "img/imagemindisponivel.jpg" %}{% endif %}"> 
+                <div class="card-block">
+                  <h5 class="card-title"><a href="{{ noticia.get_absolute_url }}">{{ noticia.titulo }}</a></h5>
+                  <p class="card-text">{{ noticia.noticia_texto|truncatewords:35|linebreaks }}</p>
+                  <p class="card-text"><small class="text-muted">Publicado a {{ noticia.publish |naturaltime}}</small></p>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+            <a href="/comunidade/noticias" class="btn btn-success-outline">Ler mais notícias</a>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="galeria">
+    <div class="section-content">
+      <div class="container fotos">
+        <h3>Galeria</h3>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card-columns">
+              <div class="card column">
+                <img src="/static/img/quarto1.jpg" alt="Quarto 1" class="card-img hover-shadow">
+              </div>
+
+              <div class="card column">
+                <img src="/static/img/Lunda-Norte-Dundo-New-City-angola.jpg" alt="Lunda-Norte-Dundo-New-City-angola" class="card-img hover-shadow">
+              </div>
+
+              <div class="card column">
+                <img src="/static/img/resort.jpg" alt="Resort" class="card-img hover-shadow">
+              </div>
+
+              <div class="card column">
+                <img src="/static/img/Obelisco.jpg" alt="Rotunda do Obelisco" class="card-img hover-shadow">
+              </div>
+
+              <div class="card column">
+                <img src="/static/img/hotel-piscina.jpg" alt="hotel-piscina" class="card-img hover-shadow">
+              </div>
+
+              <div class="card column">
+                <img src="/static/img/Dundo museu.jpg" alt="Museu Dundo" class="card-img hover-shadow">
+              </div>
+            </div>
+            <a href="/comunidade/galeria" class="btn btn-success-outline">Ver mais fotos</a>
+          </div>
+        </div>
+        <hr>    
+      </div>
+    </div>
+  </section>
+
+  <section id="eventos_pub">
+    <div class="section-content">
+      <div class="container">
+        
+      <!-- second example -->
+        <div class="column-layout">
+        <!--
+        Copyright (c) 2016 by Captain Anonymous (http://codepen.io/anon/pen/vyPdNz)s
+        -->
+
+          <div class="publicity-side">
+            <h3>Publicidades</h3>
+
+            <div class="slideshow-contentor">
+
+              <div class="mySlides animated zoomIn">
+                <img src="/static/img/quarto.jpg" style="width:100%">
+              </div>
+
+              <div class="mySlides animated zoomIn">
+                <img src="/static/img/hotel-piscina.jpg" style="width:100%">
+              </div>
+
+              <div class="mySlides animated zoomIn">
+                <img src="/static/img/resort_kakanda.jpg" style="width:100%">
+              </div>
+
+            </div>
+            <div style="text-align:center">
+              <span class="dot"></span> 
+              <span class="dot"></span> 
+              <span class="dot"></span> 
+            </div>
+      
+          </div>
+
+          <div class="event-side">
+            <h3>Eventos</h3>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card-columns">
+                  <div class="card">
+                    <img class="card-img-event" src="/static/img/comida.jpg" alt="Comida">
+                  </div>
+                  <div class="event-card card-block">
+                    <div class="event-dia-container event-layout">
+                      <div class="event-detail event-Lside">
+                        <a href="" class="span-name">Novas formas de governação</a>
+                      </div>
+                      <div class="event-body event-Rside">
+                        <div class="event-day">
+                          <span class="event-span-dia">18</span>
+                          <div class="event-footer">
+                            <span class="span-month">Jun</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <img class="card-img-event" src="/static/img/comida.jpg" alt="Lazer e diversão">
+                  </div>
+                  
+                  <div class="event-card card-block">
+                    <div class="event-dia-container event-layout">
+                      <div class="event-detail event-Rside">
+                        <a href="" class="span-name">Manuel De Fátima B Miranda Júnior </a>
+                      </div>
+                      <div class="event-body event-Lside">
+                        <div class="event-day">
+                          <span class="event-span-dia">13</span>
+                          <div class="event-footer">
+                            <span class="span-month">Ago</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <img class="card-img-event" src="/static/img/comida.jpg" alt="Obelisco do Dundo">
+                  </div>
+                  <div class="event-card card-block">
+                    <div class="event-dia-container event-layout">
+                      <div class="event-detail event-Rside">
+                        <a href="" class="span-name">Manuel De Fátima B Miranda Júnior </a>
+                      </div>
+                      <div class="event-body event-Lside">
+                        <div class="event-day">
+                          <span class="event-span-dia">8</span>
+                          <div class="event-footer">
+                            <span class="span-month">Set</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-content">
+      <div class="container">
+        <div class="col-md-6">
+          <div class="about-text">
+            <h3>Sobre a cidade do Dundo</h3>
+            <p class="">O nome Dundo provém da borracheira “ndundu” originária das margens do rio “ndundu” actualmente rio Dundo, a partir da sua nascente até sua foz no rio Luachimo.</p>
+            <p>Os primeiros nativos que os colonos encontraram junto do rio eram os Tchowkes, os Kamusekeles, os Benamay e os Lubas. Actualmente existem cerca de 17 grupos étnicolinguísticos.</p>
+            
+            <!-- <h5>Segue-nos em:</h5>
+            <a href="" class="btn btn-sm btn-secondary-outline"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</a>
+            <a href="" class="btn btn-sm btn-secondary-outline"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+            <a href="" class="btn btn-sm btn-secondary-outline"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+           slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex> slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 6000); // Change image every 6 seconds
+    }
+  </script>
+
+{% endblock %}

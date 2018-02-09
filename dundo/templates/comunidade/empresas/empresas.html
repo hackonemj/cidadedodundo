@@ -1,0 +1,214 @@
+{% extends "sidebar.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Empresas{% endblock %}
+
+{% block sidecontent %}
+	<style type="text/css">
+		.sidebar-menu{
+			background-color: #dedede;
+		}
+		.sobreodundo{
+			display: flex;
+      		padding: 0 0 10px 40px;
+		}
+		/*  */
+		.call-outs-container-2 {
+			flex-basis: 100%;
+      		padding: 20px;
+      		/*box-shadow: 0 1px 3px rgba(0,0,0,.4);
+			border-radius: 3px;*/
+		}
+
+		h3.empresas{
+			padding-bottom: 20px;
+			text-align: center;
+		}
+		.flex-container {
+		    display: -webkit-flex;
+		    display: flex;
+		    -webkit-flex-wrap: wrap;
+		    flex-wrap: wrap;
+		    max-width: 1400px;
+		    justify-content: space-between;
+		}
+
+		.flex-item {
+			background-color: white;
+		    flex-basis: 31.2%;
+			justify-content: space-around;
+			margin: 10px 0;
+		    padding: 10px;
+		    box-shadow: -1px 2px 10px 0px #999;
+		}
+		.empresa_logo{
+			max-width:200px;
+			display: block;
+		  	margin-left: auto;
+		  	margin-right: auto; 
+		}
+		.categoria{
+			max-width: 120px;
+			padding: 5px 15px;
+			text-align: center;
+			border-radius: 3px;
+		    box-shadow: -1px 1px 3px 0px rgba(0,0,0,.5);
+		}
+		.categoria:nth-child(3){background-color: #FF8C7A;}
+		.categoria:nth-child(6){background-color: #c0dbe2;}
+		.categoria:nth-child(9){background-color: #74E8B6;}
+
+		@media (max-width: 900px) {
+			.sobreodundo{
+	      		padding: 0px;
+			}
+			@media (max-width: 760px){
+				.flex-item {
+					flex-basis: 100%;
+				}
+				.call-outs-container-2 {
+					padding: 20px 0;
+				}
+			}
+		}
+	</style>
+	<div class="sobreodundo">
+		<!--  -->
+		<div class="call-outs-container-2">
+			<h3 class="empresas">Empresas municipais</h3>
+			<br>
+			<h5 class="categoria ">Saúde</h5>
+			<div class="flex-container item-saude">
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo.png" alt="logo" height="50">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+			</div>
+			<br>
+			<h5 class="categoria">Construção</h5>
+			<div class="flex-container item-construcao">
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+			</div>
+			<br>
+			<h5 class="categoria">Eventos</h5>
+			<div class="flex-container item-eventos">
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+
+				<div class="flex-item">
+					<img class="empresa_logo" src="/static/img/logo2.png" alt="logo" height="60">
+					<br>
+				  	<p><b>EPUL</b> - Empresa Pública Municipal de Urbanização de Lisboa
+					A EPUL, Empresa Pública de Urbanização de Lisboa, foi dissolvida e encerrada no dia 31 de dezembro de 2014 (deliberações nº 61/AML/2013, publicada no Boletim Municipal nº 1006, de 30/05/2013 e 1/CM/2014, publicada no Boletim Municipal nº 1040, 23/01/2014)</p>
+					 
+					<ul><b>Contactos:</b>
+						<li>Câmara Municipal de Lisboa</li>
+						<li>www.cm-lisboa.pt</li>
+						<li>email: municipe@cm-lisboa.pt</li>
+						<li>telefone: 808 20 32 32</li> 
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

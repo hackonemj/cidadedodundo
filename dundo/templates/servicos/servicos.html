@@ -1,0 +1,288 @@
+{% extends "sidebar.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}
+    {% if categoria_emprego %}{{ categoria_emprego.name }}{% else %}Empregos e Serviços{% endif %}
+{% endblock %}
+
+
+{% block sidecontent %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+  <style type="text/css">
+    @import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+    body{
+      padding: 0px;
+    }
+
+    .sobreodundo{
+      display: flex;
+      padding: 0 0 10px 40px;
+    }
+    /*  */
+    .call-outs-container-2 {
+      background-color: white;
+      flex-basis: 100%;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
+      border-radius: 3px;
+    }
+    .menu-title{
+      background-color:lavender;
+      border-radius: 3px;
+    }
+    .card-block h5{
+      text-align: center;
+    }
+    .card-block h5:hover, .card-block h5:focus{
+      text-decoration: none;
+    }
+
+    .card-block.list {
+      color: #047BFF;
+      list-style: none;
+      padding: 5px;
+    }
+    .card-block>.list li{
+      font-size: 15px;
+    }
+    .card-block>.list::first-line {
+      color: #333;
+    }
+    .card-block>.list> li, h5 {
+      padding: 5px 0px 5px 15px;
+    }
+    .card-block>.list>li:hover {
+      background-color: lavender;
+      color: #333;
+      font-weight: normal;
+      padding-left: 20px;
+      border-radius: 3px;
+    }
+    @media (max-width: 900px) {
+      .sobreodundo{
+        padding: 0px;
+      }
+
+      @media (max-width: 545px) {
+        .call-outs-container-2 {
+          padding: 10px;
+        }
+        .col-sm-6{
+          padding: 0;
+        }
+      }
+    }
+
+    .dropdown-menu>li>a.selected {
+      background-color: #0275d8;
+      color: #fff;
+    }
+    
+    #main {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 30px 0 10px 0;
+      overflow:hidden;
+    }
+
+    .product-list .item {
+      width:25%;
+      padding: 10px;
+      text-align:center;
+      line-height:1.2;
+    }
+
+    .product-list .item img {
+      width:100%;
+      margin: 10px 0;
+    }
+    .menu-title{
+      padding: 10px;
+      font-family: 'Ubuntu', sans-serif; font-weight:normal;
+    }
+    .modal-body>p{
+      text-align: -webkit-auto;
+    }
+    .showModal{
+      cursor: pointer;
+      
+    }
+    a.modalShow{
+      padding: 4px 10px;
+    }
+    a.modalShow:hover{
+      background-color: lavender;
+      border-radius: 3px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+  </style>
+  <div class="sobreodundo">
+    <!--  -->
+    <div class="call-outs-container-2">
+        <h3>Serviços</h3>
+        <h4 class="menu-title">Empregos</h4>
+        <div class="dropdown">
+          <h5 style="padding-left: 0px; padding-right: 0px; padding-top: 30px;">Categorias</h5>
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" href="{% url "dundo:servicos" %}">
+            {% if not categoria_emprego %}Todas{% else %}{{ categoria_emprego.nome }}{% endif %}
+          </button>
+          <ul class="dropdown-menu">
+            <li >
+              <a href="{% url "dundo:servicos" %}" {% if not categoria_emprego %}class="selected"{% endif %}>Todas</a>
+            </li>
+            {% for c in categorias %}
+              <li >
+                <a href="{{ c.get_absolute_url }}" {% if categoria_emprego.slug == c.slug %}class="selected"{% endif %}>{{ c.nome }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <div id="main" class="product-list">
+
+          {% for emprego in empregos %}
+              <div class="item">
+                <a class="showModal" data-toggle="modal" data-target="#myModal{{ emprego.id }}">
+                  <img class="img-modal" src="{% if emprego.imagem %}{{ emprego.imagem.url }}{% else %}{% static "img/imagemindisponivel.jpg"%}{% endif %}">
+                </a>
+      
+                
+                  <!-- Trigger the modal with a button -->
+                  <a class="showModal modalShow" data-toggle="modal" data-target="#myModal{{ emprego.id }}">{{ emprego.nome }}</a>
+
+                  <!-- Modal -->
+                  <div class="modal" id="myModal{{ emprego.id }}" role="dialog">
+                    <div class="modal-dialog">
+                    
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">{{ emprego.categoria_emprego }}</h4>
+                          <h6 class="modal-title">{{ emprego.nome }}</h6>
+                        </div>
+                        <div class="modal-body">
+                          <p>{{ emprego.descricao|linebreaks}}</p>
+                        </div>
+                        <div class="modal-footer">
+                          <h6 class="modal-title" style="float: left;"><b>Empresa: </b>{{ emprego.empresa }}</h6>
+                          <h6 class="modal-title" style="float: left;"><b>Contactos: </b>{{ emprego.contactos }}</h6>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+
+              </div>
+          {% endfor %}
+        </div>
+        <br>
+        <hr>
+        <h4 class="menu-title">Formulários</h4>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card card-block">
+                <h5>Categorias de Emprego</h5>
+                <ul class="list">
+                  
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Direito<i class="fa fa-balance-scale" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Finanças<i class="fa fa-university" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Mostorista<i class="fa fa-car" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Informática<i class="fa fa-desktop" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Tradutor<i class="fa fa-language" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Fotográfo/Designer<i class="fa fa-picture-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Desporto<i class="fa fa-futbol-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Atendente<i class="fa fa-info" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Construção<i class="fa fa-building-o" aria-hidden="true"></i></a></li>
+                </ul>
+              </div>
+            <a>
+              <div class="card card-block">
+                <h5>Direcção da Saúde</h5>
+                <ul class="list">
+                  <li>
+                    <a href="/static/formularios/Visto-Schengen-Port-170716.pdf" download="Visto-Schengen"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Formulário de pedido de visto
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-sm-4">
+            <a>
+              <div class="card card-block">
+                <h5>Direcção da Educação</h5>
+                <ul class="list">
+                  <li>
+                    <a href="/static/formularios/Visto-Schengen-Port-170716.pdf" download="Visto-Schengen"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Formulário de pedido de visto
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-sm-4">
+            <a>
+              <div class="card card-block">
+                <h5>Direcção do Desporto</h5>
+                <ul class="list">
+                  <li>
+                    <a href="/static/formularios/Visto-Schengen-Port-170716.pdf" download="Visto-Schengen"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Formulário de pedido de visto
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-sm-4">
+            <a>
+              <div class="card card-block">
+                <h5>Direcção do M do Interior</h5>
+                <ul class="list">
+                  <li>
+                    <a href="/static/formularios/Visto-Schengen-Port-170716.pdf" download="Visto-Schengen"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Formulário de pedido de visto
+                    </a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                  <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Visto-Schengen</a></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+        </div>   
+        <hr>
+    </div>
+  </div>
+  <script> 
+    $(document).ready(function(){ 
+      $(".showModal").click(function(){ 
+        $(this).parent().find('.modal').modal({show:true}); 
+      }); 
+    });
+  </script>
+{% endblock %}

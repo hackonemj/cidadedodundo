@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load noticia_count %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block conteudo %}
+	<style type="text/css">
+		.container-overlay {
+			position: relative;
+			width: 30%;
+		}
+
+		.image {
+		  	display: block;
+		  	width: 100%;
+		  	height: 100%;
+		  	margin: 0px;
+		}
+
+		.overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: #fff;
+			overflow: hidden;
+			width: 100%;
+			height: 0;
+			transition: .5s ease;
+		}
+
+		.container-overlay:hover .overlay {
+			height: 100%;
+		}
+		.text-noticia a:visited{
+			color: #333;
+		}
+		.text-noticia a:link{
+			color: #333;
+		}
+		.text-noticia:hover{
+			color: #333;
+		}
+		.text-noticia {
+			width: 80%;
+			color: #333;
+			font-size: 16px;
+			position: absolute;
+			text-align: justify;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		    -ms-transform: translate(-50%, -50%);
+		}
+
+		.news-menu{
+			background-color: #fff;
+			width: 100%;
+			height: 100%;
+			padding-left: 20px;
+			padding-right: 20px;		
+		}
+		h4{
+			padding: 0 10px;
+			padding-top: 40px;
+		}
+		.infinite-container{
+			display: flex; 
+    		flex-wrap:wrap;
+    		justify-content:space-around;
+		}
+		.infinite-item{
+			flex-basis: 23%;
+			height: 300px;
+			padding: 0px;
+			border-bottom-style: solid;
+			border-color: #fff;
+			border-bottom-width: 5px;
+	      	background-color: #fff;
+	      	margin-bottom: 20px;
+	      	background-color: #fff;
+		    border-radius: 3px;
+		    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+	   	}
+      	.loading{
+  			margin: 0 auto;
+  			text-align: center;
+		}
+
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+	   @media only screen and (max-width: 1000px) {
+	   	.infinite-item{
+					flex-basis: 40%;
+				}
+			@media only screen and (max-width: 600px) {
+				.infinite-item{
+					flex-basis: 90%;
+				}
+				.news-menu{
+					padding-left: 0px;
+					padding-right: 0px;		
+				}
+			}
+		}
+	</style>
+	<div class="news-menu">
+
+		<h4>Em Destaque</h4>
+		<hr>
+		{% mostrar_ultimas_noticias 4%}
+		
+		<h4>Noticías</h4>
+		<hr>
+		<div class="infinite-container ">
+			{% for noticia in noticias %}
+			<div class="infinite-item container-overlay">
+				<img class="image"src="{% if noticia.imagem_url %}{{ noticia.imagem_url }}{% else %}{% static "img/imagemindisponivel.jpg" %}{% endif %}">
+				<div class="overlay"><a href="{{ noticia.get_absolute_url }}" class="text-noticia">{{ noticia.noticia_texto|truncatewords:30|linebreaks }}</a>
+				</div>
+			</div>
+			{% empty %}
+			<div class="">
+				<h5>Sem noticias disponiveis</h5>
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="loading" style="display:none;">
+			<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+		</div>
+		{% include "comunidade/noticias/pagination.html" with page=page_obj %}
+	</div>
+{% endblock %}
+{% block javaScript %}
+  <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+  </script>
+{% endblock %}

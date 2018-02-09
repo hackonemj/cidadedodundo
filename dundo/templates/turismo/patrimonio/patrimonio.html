@@ -1,0 +1,98 @@
+{% extends "sidebar.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Património{% endblock %}
+
+{% block sidecontent %}
+  <style type="text/css">
+    
+    .call-outs-container{
+      display: flex;
+      padding: 0 0 10px 40px;
+        
+      }
+    .call-out{
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
+      flex-basis: 100%;
+      padding: 20px;
+    }
+    h4{
+      text-align: center;
+      font-weight: bold;
+    }
+    .container-2 h5{
+      text-align: center;
+    }
+
+    .container-2{
+      display:flex;  
+      /*
+      justify-content:flex-start;
+      justify-content:flex-end;
+      justify-content:center;
+      justify-content:space-between;
+      justify-content:space-around;
+      */
+      flex-wrap:wrap;
+      justify-content:space-around;
+      
+    }
+    .container-2-box{
+      flex-basis: 40%;  
+    }
+    .container-2 div{
+      margin-top: 40px; 
+      border:1px #ccc solid;
+      padding:10px;
+    }
+
+    @media (max-width: 500px) {
+      .call-outs-container{
+        padding: 0px;
+      }
+      .container-2-box{
+      flex-basis: 100%;  
+    }
+    }
+  </style>
+  <div class="patrimonio">
+    <!-- t -->
+    <div class="call-outs-container">
+      <div class="call-out">
+        <h4>Patrimónios</h4>
+
+        <div class="container-2">
+          <div class="container-2-box">
+            <img src="/static/img/Museu Dundo.jpg">
+            <h5>Museu do Dundo</h5>
+            <p>O Museu Etnográfico, um dos maiores de Angola. A construção do edifício central do museu foi iniciada em 1942, tendo sido somente finalizada em 1948. Congrega áreas de etnografia, história natural, arqueologia e paleontologia. Possui 14 salas de exposição, sendo 12 permanentes, uma de folclore e outra de exposições temporárias. Com uma colecção etnográfica de cerca de 10 mil peças, já foi considerado um dos maiores a sul do Saara.</p>
+          </div>
+          <div class="container-2-box">
+            <img src="/static/img/Obelisco.jpg">
+            <h5>Obelisco do Dundo</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec elit urna. Suspendisse a erat a nibh imperdiet fermentum. In eleifend ultricies massa, id pretium purus convallis nec. </p>
+          </div>
+          <div class="container-2-box">
+            <img src="/static/img/dundocentralidade.jpg">
+            <h5>Estação Arqueológica de Bala-Bala</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec elit urna. Suspendisse a erat a nibh imperdiet fermentum. In eleifend ultricies massa, id pretium purus convallis nec. </p>
+          </div>
+          <div class="container-2-box">
+            <img src="/static/img/dundocentralidade.jpg">
+            <h5>Edifícios dos CTT</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec elit urna. Suspendisse a erat a nibh imperdiet fermentum. In eleifend ultricies massa, id pretium purus convallis nec. </p>
+          </div>
+          <div class="container-2-box">
+            <img src="/static/img/palacio.jpg">
+            <h5>Palácio do Governo</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec elit urna. Suspendisse a erat a nibh imperdiet fermentum. In eleifend ultricies massa, id pretium purus convallis nec. </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

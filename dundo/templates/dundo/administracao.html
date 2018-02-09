@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Administração{% endblock %}
+
+{% block conteudo %}
+	<style type="text/css">
+
+		html {
+	  	box-sizing: border-box;
+		}
+
+		.column {
+		  width: 21%;
+		  margin-bottom: 16px;
+		  margin: 0 auto;
+		  padding: 0 8px;
+		}
+
+
+		.container-adm{
+		  padding: 0 16px;
+		}
+		.title {
+		  color: grey;
+		}
+
+		.card-adm{
+			max-width: 550px;
+			margin: auto;
+		}
+		.card-adm img{
+			display: block;
+		  	margin-left: auto;
+		  	margin-right: auto;
+			border-radius: 50%;
+			border: 3px solid #49DCFF;
+		}
+		.card-adm img:hover{
+			box-shadow: 0 2px 10px 3px rgba(0, 0, 0, 0.19);
+		}
+
+		.sobreodundo{
+			background-color: #fff; 
+		}
+		
+		/*  */
+		.call-outs-container{
+		  max-width: 1400px;
+		  padding: 40px;
+		}
+		.call-out {
+			background-color: #fff;
+		  	box-sizing: border-box;
+		  	flex-basis: 100%;
+		}
+		h3{
+			padding-top: 10px;
+			padding-bottom: 20px;
+			text-align: center;
+		}
+		p{
+			text-align: center;
+		}
+		@media (min-width: 900px) {
+			.call-outs-container {
+		    	display: flex;
+		    	justify-content: space-around;
+		  	}
+		}
+
+		@media (max-width: 500px) {
+			.main-content{
+				padding: 0px;
+			}
+			.call-outs-container{
+		    	padding: 0 3px 0px 3px;
+		  	}
+		}
+	</style>
+	<div class="sobreodundo">
+		<!-- third example -->
+		<div class="call-outs-container">
+			<div class="call-out">
+			    <h3>Administrador da Cidade do Dundo</h3>
+			    <hr>
+			    <div class="card-adm">
+			      <img src="/static/img/CROPPED-_MG.jpg" alt="Administrador" style="width:40%;">
+			      <div class="container-admin">
+			        <p style="text-align: center; padding-top: 8px;"><b>Engenheiro</b> Faustino Alteres Teresa Malenga "Alteres Malenga"</p>
+			        <p class="title">Administrador municipal</p>
+			        <p>example@example.com</p>
+			        <p>Some text that describes me lorem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem orem ipsum ipsum lorem .</p>
+			        
+			      </div>
+			    </div>
+			    <br>
+			    <br>
+			    <hr>
+			    <br>		  
+		    </div>
+		</div>
+	</div>
+{% endblock %}

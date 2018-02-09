@@ -1,0 +1,92 @@
+{% load staticfiles %}
+<style type="text/css">
+	.container-overlay {
+		position: relative;
+		width: 30%;
+	}
+
+	.image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		margin: 0px;
+	}
+
+	.overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		overflow: hidden;
+		width: 100%;
+		height: 0;
+		transition: .5s ease;
+	}
+
+	.container-overlay:hover .overlay {
+		height: 100%;
+	}
+	.text-noticia a:visited{
+		color: #333;
+	}
+	.text-noticia a:link{
+		color: #333;
+	}
+	.text-noticia:hover{
+		color: #333;
+	}
+	.text-noticia {
+		width: 80%;
+		color: #333;
+		font-size: 16px;
+		position: absolute;
+		text-align: justify;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+	}
+	
+	.item-container{
+		display: flex; 
+		flex-wrap:wrap;
+		justify-content:space-around;
+	}
+	.item_news{
+		flex-basis: 23%;
+		height: 300px;
+		padding: 0px;
+		border-bottom-style: solid;
+		border-color: #fff;
+		border-bottom-width: 5px;
+		background-color: #fff;
+		margin-bottom: 20px;
+		background-color: #fff;
+		border-radius: 3px;
+		box-shadow: 0 1px 3px rgba(0,0,0,.4);
+	}
+	
+	@media only screen and (max-width: 1000px) {
+		.item_news{
+			flex-basis: 40%;
+		}
+		@media only screen and (max-width: 600px) {
+			.item_news{
+				flex-basis: 90%;
+			}
+		}
+	}
+</style>
+
+<div class="item-container ">
+	{% for noticia in ultimas_noticias %}
+		{% if noticia.categoria_noticia %}
+			<div class="item_news container-overlay">
+				<img class="image"src="{% if noticia.imagem_url %}{{ noticia.imagem_url }}{% else %}{% static "img/imagemindisponivel.jpg"%}{% endif %}">
+				<div class="overlay"><a href="{{ noticia.get_absolute_url }}" class="text-noticia">{{ noticia.noticia_texto|truncatewords:30|linebreaks }}</a>
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>

@@ -1,0 +1,14 @@
+<style type="text/css">
+	ul{
+		list-style: none;
+		padding: 5px;
+	}
+	li a p{
+		margin: 0px;
+	}
+</style>
+<ul class="list">
+{% for noticia in latest_noticias %}
+    <li><a href="{{ noticia.get_absolute_url }}">{{ noticia.titulo |truncatewords:5|linebreaks}}</a></li>
+{% endfor %}
+</ul>

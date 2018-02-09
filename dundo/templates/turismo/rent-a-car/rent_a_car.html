@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Rent a Car{% endblock %}
+
+{% block conteudo %}
+  <style type="text/css">
+    #news{
+    background-color: #fff;
+    }
+    #news .section-content{
+      padding: 50px 0;
+    }
+    .sem_info{
+      max-width: 500px;
+      margin: 30px auto;
+      text-align: center;
+      padding: 60px;
+      border: 2px solid #49DCFF;
+    }
+  </style>
+  <section id="news">
+    <div class="section-content">
+      <div class="container">
+        <h3>Rent a Car</h3>
+        <hr>
+        <div class="sem_info">
+          <h5>Sem informações disponíveis</h5>
+        </div>
+        <hr>    
+      </div>
+    </div>
+  </section>
+{% endblock %}

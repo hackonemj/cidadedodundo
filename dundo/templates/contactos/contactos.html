@@ -1,0 +1,138 @@
+{% extends "base.html"%}
+
+{% block title %}Contactos{% endblock %}
+
+{% block conteudo%}
+<style type="text/css">
+  #contacto{
+    padding: 20px;
+    background-color: #fff;
+  }
+
+  #contacto .white, .sugest{
+    text-align: center;
+    color: #333;  
+  }
+  .sugest{
+    font-size: 20px;
+    animation-delay: 1s;
+  }
+  .cInform{
+    max-width: 500px;
+    color: #fff;
+    background: gray;
+    margin: 0 auto;
+  }
+  .cInform ul{
+    padding: 20px 50px;
+    text-decoration: none;
+    list-style: none;
+  }
+  li{
+    font-size: 16px;
+  }
+  .iconcontact{
+    font-size: 20px;
+    padding-right: 10px;
+    color: #FF8A7B;
+  }
+  .fa-whatsapp{
+    color: #2CFF88;
+    font-size: 24px;
+  }
+
+  /* messages */
+  .errorlist {
+    color:#cc0033;
+    float:left;
+    clear:both;
+    padding-left:10px;
+    list-style-type: none;
+  }
+  ul.messages {
+      margin: 0 auto;
+      max-width: 500px;
+      margin-bottom: 15px;
+      text-align: center;
+      padding:0;
+      list-style-type: none;
+  }
+  ul.messages li.success,
+  ul.messages li.error{
+      margin:0;
+      padding:14px 20px;
+      list-style:none;
+      color:#fff;
+  }
+
+  ul.messages li.success { background:#81ce81; }
+  ul.messages li.success a { color:#0ac33e; }
+
+  ul.messages li.error { background:#FB303F;}
+  ul.messages li.error a { color:#e9828e; }
+
+  ul.messages li a.close {
+      margin:0;
+      float:right;
+      opacity:1;
+      border:0;
+      box-shadow:none;
+      text-shadow:none;
+  }
+
+  @media (max-width: 500px) { 
+    div.container{
+      padding: 0 10px;
+    }
+    #contacto{
+      padding: 10px 3px 30px 3px;
+    }
+    .cInform ul{
+      padding: 20px 20px;
+    }
+  }
+</style>
+<section id="contacto">
+  <div class="container">
+    <hr> 
+    <p class="sugest animated zoomIn">Tem alguma dúvida a ser esclarecida ou sugestão a dar? Não hesite em contactar-nos
+    </p>
+    <hr> 
+    <h3 style="text-align: center;">Contactos da Direcção</h3>
+    <div class="cInform">
+      <ul>
+        <li><i class="fa fa-location-arrow iconcontact" aria-hidden="true"></i> Rua 28 de Agosto, Centro Urbano</li>
+        <li><i class="fa fa-phone iconcontact" aria-hidden="true"></i> +244 925 008 900</li>
+        <li><i class="fa fa-envelope-o iconcontact" aria-hidden="true"></i> cidadedodundo@gmail.com</li>
+        <li><i class="fa fa-whatsapp iconcontact" aria-hidden="true"></i> +244 925 008 900</li>
+      </ul>
+    </div>
+
+    {% if messages %}
+      <ul class="messages animated fadeInDown" id="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a class="close">✖</a>
+        </li>    
+        {% endfor %}  
+      </ul> 
+    {% endif %} 
+    
+    <form role="form" action="" method="post" class="contactf">  
+      {% csrf_token %}{{ form.as_p }}
+      <button class="input-submit" type="submit">Enviar <i class="fa fa-paper-plane" aria-hidden="true"></i></button> 
+    </form>
+  </div>
+</section>
+<script type="text/javascript">
+  document.getElementById("id_contact_name").placeholder = "Nome";
+  document.getElementById("id_contact_email").placeholder = "Email";
+  document.getElementById("id_content").placeholder = "Mensagem";
+
+  $(".close").on('click', function(){
+    $("#messages").css({"display": "none",});
+  });
+</script>
+
+{% endblock%}

@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}Turismo{% endblock %}
+
+{% block conteudo %}
+  <head>
+  <meta charset="UTF-8">
+  <!-- Latest compiled and minified CSS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+  <style type="text/css">
+    #news{
+      background-color: #fff;
+    }
+    #news .section-content{
+      padding: 30px 0;
+    }
+
+    h4{
+      padding-bottom: 20px;
+    }
+    h4, h5{
+      position: relative;
+      top: 80%;
+      bottom: 0%;
+      color: white;
+      text-align: center;
+    }
+    .slideshow{
+      width: 100%;
+      height: 350px;
+      background-color: #394878;
+    }
+    .turismo-card{
+       height: 200px;
+    }
+
+    .alojamento{
+      background: url('../static/img/quarto.jpg') center center no-repeat;
+      background-size: cover;
+    }
+    .patrimonios{
+      background: url('../static/img/palacio.jpg') center center no-repeat;
+      background-size: cover;
+    }
+    .lazer{
+      background: url('../static/img/resort.jpg') center center no-repeat;
+      background-size: cover;
+    }
+    .rent-a-car{
+      background: url('../static/img/rent-a-car.jpg') center center no-repeat;
+      background-size: cover;
+    }
+    .sabores-locais{
+      background: url('../static/img/comida.jpg') center center no-repeat;
+      background-size: cover;
+    }
+
+    .carousel-inner .item{
+      background: #a7cfdf; /* Old browsers */
+      background: -moz-linear-gradient(top,  #a7cfdf 0%, #23538a 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #a7cfdf 0%,#23538a 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #a7cfdf 0%,#23538a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a',GradientType=0 ); /* IE6-9 */
+      text-align: center;
+      height: 350px;/*change as your needs*/
+    }
+
+    .transition-timer-carousel-progress-bar {
+        height: 5px;
+        background-color: tomato;/*progress bar color*/
+        width: 0;
+        margin: 0 0 0 0;
+        border: none;
+        z-index: 11;
+        position: relative;
+    }
+    .carousel-indicators{
+      right: 92%;
+      left: 3%;
+      bottom: 0.1%;
+      margin-left: 0;
+      width: 50px;
+    }
+    .carousel-indicators li{
+      border-radius: 2px;
+    }
+  </style>
+  <section id="news">
+    <div class="section-content">
+      <div class="container">
+        <div class="slideshow">
+
+          <div id="myCarousel" class="carousel slide myCarousel" data-interval="false" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol> 
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item">
+                <!--put img inside itens like this-->
+                <img src="/static/img/lagoa.jpg" alt="Centralidade Dundo">
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h3>Primeiro Slide</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="/static/img/car.jpg" alt="rent-a-car">
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h3>Segundo slide</h3>
+                    <p>If you use controls, progress bar will change too.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="/static/img/cidundo.jpg" alt="Guia Comercial">
+                <div class="container">
+                  <div class="carousel-caption">
+                    <h3>Terceito slide</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="transition-timer-carousel-progress-bar" />
+
+            <!--
+            Copyright (c) 2017 by Eduardo Gomes (http://codepen.io/elgsantos/pen/doknj)
+
+
+            Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+            The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            -->
+          </div>
+
+        </div>
+        <br>
+        <br>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-columns">
+
+              <a href="/turismo/onde-ficar">
+                <div class="card turismo-card alojamento">
+                  <h5 class="card-title"><i class="fa fa-bed" aria-hidden="true"></i> Alojamento</h5>
+                </div>
+              </a>
+
+              <a href="/turismo/patrimonio">
+                <div class="card turismo-card patrimonios">
+                  <h5 class="card-title"><i class="fa fa-university" aria-hidden="true"></i> Patrimónios</h5>
+                </div>
+              </a>
+
+              <a href="/turismo/lazer">
+                  <div class="card turismo-card lazer">
+                    <h5 class="card-title"><i class="fa fa-music" aria-hidden="true"></i> Lazer &amp; Diversão</h5>
+                  </div>
+              </a>
+
+              <a href="/turismo/rent-a-car">
+                <div class="card turismo-card rent-a-car">
+                  <h5 class="card-title"><i class="fa fa-car" aria-hidden="true"></i> Rent-a-Car</h5>
+                </div>
+              </a>
+
+              <a href="/turismo/sabores-locais">
+                <div class="card turismo-card sabores-locais">
+                  <h5 class="card-title"><i class="fa fa-cutlery" aria-hidden="true"></i> Sabores Locais</h5>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+        <hr>    
+      </div>
+    </div>
+  </section>
+
+  <script>
+    
+    var percent = 0;
+    var interval = 35,//it takes about 7s, interval=20 takes about 4s
+    $bar = $('.transition-timer-carousel-progress-bar'),
+    $crsl = $('#myCarousel');
+    $('.carousel-indicators li, .carousel-control').click(function (){$bar.css({width:0.5+'%'});});
+    /*line above just for showing when controls are clicked the bar goes to 0.5% to make more friendly, 
+    if you want when clicked set bar empty, change on width:0.5 to width:0*/
+    $crsl.carousel({//initialize
+      interval: false,
+      pause: true
+    }).on('slide.bs.carousel', function (){percent = 0;});//This event fires immediately when the bootstrap slide instance method is invoked.
+    function progressBarCarousel() {
+      $bar.css({width:percent+'%'});
+      percent = percent +0.5;
+      if (percent>=100) {
+        percent=0;
+        $crsl.carousel('next');
+      }
+    }
+    var barInterval = setInterval(progressBarCarousel, interval);//set interval to progressBarCarousel function
+    if (!(/Mobi/.test(navigator.userAgent))) {//tests if it isn't mobile
+      $crsl.hover(function(){
+            clearInterval(barInterval);
+          },
+          function(){
+            barInterval = setInterval(progressBarCarousel, interval);
+          }
+      );
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="shortcut icon" href="/static/favicon.ico">
+
+  <link href="http://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Dosis:600" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="{% static "css/animate.css" %}">
+   <!--************* Contact Form link********-->
+  <link rel="stylesheet" href="{% static "css/contactform/style.css" %}">
+  <!--************* End of Contact form********-->
+
+  <!-- Bootstrap CSS from bower -->
+  <link rel="stylesheet" href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}">
+  
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="{% static "css/font-awesome/css/font-awesome.min.css" %}">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static "css/bootstrap-touch-slider.css" %}">
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link rel="stylesheet" href="{% static "styles.css"%}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/static/js/Script.js"></script>
+</head>
+<style type="text/css">
+  
+  .modal-open{
+    padding: 0px;
+  }
+  .conteudo{
+    margin-top: 50px;
+    background-color: #fff;
+  }
+
+  .btn-1-search{
+    padding: 4px 16px;
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+  }
+  .btn-1-search:hover,.btn:focus{
+    border-color: cornflowerblue;
+    color: white;
+    background-color: #808080;
+  }
+  .btn-1-search>.fa-search:hover{
+    color: #fff;
+  }
+</style>
+<body>
+ <!-- All content of top nav for small and big screen are bellow -->
+  <header>
+    <nav id="menu-wrap">
+      <a class="navbar-brand" href="/"><img src="/static/img/logo2.png" alt="logo" height="50">
+      <ul class="menu">
+        <li><a href="/" id="hover-nav"><i class="fa fa-home" aria-hidden="true"></i></a>
+          <ul>
+            <li><a href="/dundo/sobre">Sobre o Dundo</a></li>
+            <li><a href="/dundo/actualidades">Actualidades</a></li>
+            <li><a href="/dundo/administracao">Administração</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="/cidade-do-dundo" id="hover-nav">Cidade do Dundo</a>
+          <ul>
+            <li><a href="/cidade-do-dundo/porque-o-dundo">Porquê o Dundo?</a></li>
+            <li><a href="/cidade-do-dundo/cultura">Cultura</a></li>
+            <li><a href="/cidade-do-dundo/desporto">Desporto</a></li>
+            <li><a href="/cidade-do-dundo/educacao">Educação</a></li>
+            <li><a href="/cidade-do-dundo/comercio">Comércio</a></li>
+            <li><a href="/cidade-do-dundo/habitar">Habitação</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/turismo" id="hover-nav">Turismo</a>
+          <ul>
+            <li class="dir"><a href="/turismo/onde-ficar">Onde ficar</a></li>
+            <li class="sub-menu-level-3"><a href="/turismo/patrimonio">Patrimónios</a></li>
+            <li class="sub-menu-level-3"><a href="/turismo/lazer">Lazer &amp; Diversão</a></li>
+            <li class="sub-menu-level-3"><a href="/turismo/rent-a-car">Rent-a-Car</a></li>
+            <li class="sub-menu-level-3"><a href="/turismo/sabores-locais">Sabores locais</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/comunidade" id="hover-nav">Comunidade</a>
+          <ul>
+            <li><a href="/comunidade/empresas">Empresas</a></li>
+            <li><a href="/comunidade/galeria">Galeria</a></li>
+            <li><a href="/comunidade/eventos">Eventos</a></li>
+            <li><a href="/comunidade/noticias">Noticias</a></li>
+          </ul>
+        </li>
+        <li><a href="/servicos" id="hover-nav">Serviços</a></li>
+        <li><a href="/contacto" id="hover-nav">Contacte-nos</a></li>
+        <li>
+          <form method="get" class="form-inline pull-xs-right" action="{% url 'haystack_search' %}" style="padding:0 5px;">
+            <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+            <button  class="btn btn-1-search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+        </li>
+      </ul>
+    </nav> 
+    <!-- End of top nav menu -->
+  </header>
+  <!-- /***** Toggle Menu para os dipositivos moveis*****
+    *************************************************/ -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul class="small-menu">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/dundo">Dundo</a></li>
+      <li><a href="/cidade-do-dundo">Cidade do Dundo</a></li>
+      <li><a href="/turismo">Turismo</a></li>
+      <li><a href="/comunidade">Comunidade</a></li>
+      <li><a href="/servicos">Serviços</a></li>
+      <li><a href="/contacto">Contacte-nos</a></li>
+    </ul>
+  </div>
+  <div class="open-nav" style="font-size:30px;">
+    <form method="get" action="{% url 'haystack_search' %}" class="form-inline pull-xs-right menu_form">
+      <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
+      <button class="btn btn-1-search" type="submit"><i class="fa fa-search fa-menu" aria-hidden="true"></i></button>
+    </form>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" onclick="openNav()">
+      <span class="icon-bar" style="background-color: white;"></span>
+      <span class="icon-bar" style="background-color: white;"></span>
+      <span class="icon-bar" style="background-color: white;"></span>                        
+    </button>
+  </div>
+  
+  <script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+  <div class="conteudo">
+    {% block conteudo %}
+    {% endblock %}
+  </div>
+
+  <footer id="footer-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3" id="menulinks">
+              <h3 class="menuLinksTitle">Links</h3>
+              <ul class="list-unstyled">
+                <li><a href="/dundo/sobre">Sobre o Dundo</a></li>
+                <li><a href="/dundo/administracao">Administração</a></li>
+                <li><a href="/comunidade/eventos">Eventos</a></li>
+                <li><a href="/comunidade/noticias">Noticías</a></li>
+                <li><a href="/comunidade/galeria">Galeria</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3" id="menulinks">
+              <h3 class="menuLinksTitle">Turismo</h3>
+              <ul class="list-unstyled">
+                <li><a href="/turismo/onde-ficar">Onde ficar</a></li>
+                <li><a href="/turismo/patrimonio">Património</a></li>
+                <li><a href="/turismo/lazer">Lazer &amp; Diversão</a></li>
+                <li><a href="/turismo/rent-a-car">Rent-a-Car</a></li>
+                <li><a href="/turismo/sabores-locais">Sabores locais</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3" id="menulinks">
+              <h3 class="menuLinksTitle">Contactos</h3>
+              <ul class="list-unstyled">
+                <li>
+                  <a>Rua 25 de Abril, Dundo, edificio 3</a>
+                </li>
+                <li>
+                  <a>+244 925 448 787</a>
+                </li>
+                <li>
+                  <a>cidadedodundo@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+              <h3 class="networkTitle">Segue-nos</h3>
+              <div class="networking-icon">
+                <div class="container-snetworking-footer">
+                  <a href="/"><i class="fa fa-facebook" aria-hidden="true" id="icon-footer"></i></a>
+                </div>
+                <div class="container-snetworking-footer">
+                  <a href="/"><i class="fa fa-twitter" aria-hidden="true" id="icon-footer"></i></a>
+                </div>
+                <div class="container-snetworking-footer">
+                  <a href="/"><i class="fa fa-instagram" aria-hidden="true" id="icon-footer"></i></a>
+                </div>
+             </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col-sm-6" style="padding: 0px;">
+          <p>@copyright 2017. Coded by <a href="http://bradhussey.ca/">Yasolutions</a></p>
+        </div>
+    </div>
+  </footer>
+
+  <!-- jQuery first, then Bootstrap JS. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/infinite.min.js' %}"></script>
+  {% block javaScript %}
+  {% endblock %}
+
+ </body>
+ </html>

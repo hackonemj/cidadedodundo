@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Pesquisar{% endblock %}
+
+{% block conteudo %}
+  <style type="text/css">
+    #search{
+      background-color: #F7F7F7;
+      padding: 0 10px;
+    }
+    #search .section-content{
+      padding: 50px 0;
+    }
+    .search_news{
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.4);
+      padding: 20px 30px;
+      margin: 0 auto;
+    }
+    .search-ico{
+      font-size: 16px;
+      color: #333;
+    }
+    .search-btn{
+      width: 50px;
+      height: 40px;
+      background-color: #53A7FF;
+      border-radius: 3px;
+      border-style: none;
+      margin-left:10px;
+    }
+    .search-btn:hover{
+      background-color: #F7F7F7;
+      color: white;
+      border: 2px solid #53A7FF;
+    }
+    form{
+      max-width: 400px;
+    }
+    #id_q{
+      border-radius: 3px;
+      border-color: #53A7FF;
+    }
+    #id_models, label{
+      display: none;
+    }
+
+    input[type=search] {
+      width: 130px;
+      box-sizing: border-box;
+      border: 2px solid #53A7FF;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;
+      padding: 7px 20px 7px 20px;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
+
+    input[type=search]:focus {
+      width: 70%;
+    }
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 500px) {
+      #search .section-content{
+        padding: 20px 0;
+      }
+      h2{
+        font-size: 1.75em;
+      }
+      h3{
+        font-size: 1.50em;
+      }
+      div.search_news{
+        padding: 20px 10px;
+      }
+    }
+  </style>
+  <section id="search">
+    <div class="section-content">
+      <div class="container search_news">
+        <h2>Pesquisar noticías</h2>
+        <br>
+        <br>
+        <form method="get" action=".">
+          {{form|safe}}
+          <button class="search-btn" type="submit"><i class="fa fa-search search-ico" aria-hidden="true"></i></button>
+        </form>
+        <br>
+        <br>
+        {% if query %}
+            <h3>Resultados da pesquisa</h3>
+
+            {% for result in page.object_list %}
+                <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.titulo }}</a>
+                </p>
+            {% empty %}
+                <p>Nenhum resultado foi encontrado</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+          {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+          {% endif %}
+      </div>  
+    </div>
+  </section>
+  <script type="text/javascript">
+  //Remover as campos desnecessarios do formulario de pesquisa
+    $("id_models").remove();
+    $("label").remove();
+    document.getElementById("id_q").placeholder = " Pesquisar";
+  </script>
+{% endblock %}

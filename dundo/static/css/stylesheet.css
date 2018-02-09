@@ -1,0 +1,121 @@
+body{
+
+	margin: 0 auto;
+	font-weight:normal;
+}
+#content-news { 
+	background-color: aliceblue;
+    float:left;
+    width:60%;
+    padding:20px; 
+}
+
+
+#sidebar { 
+    float:right;
+    width:30%;
+    padding:20px;
+    background:#efefef; 
+    height:100%;
+}
+
+.news{
+	background-color: #fff;
+	width: 100%;
+	height: 100%;		
+}
+ 
+.call-outs-container {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-flow: row wrap;
+	justify-content: space-around;
+ 	padding: 10px;
+	align-items: flex-start;
+}
+
+.call-out {
+	flex-basis: 21%;
+	border-bottom-style: solid;
+	border-color: #920000;
+	border-bottom-width: 5px;
+	
+}
+ .call-out p{
+	 margin: 0;
+	 padding: 20px;
+ }
+
+  .call-out a:link {
+    color: #E8E8E8;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.call-out .newsBtn{
+	color: aliceblue;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	background-color: #333;
+	float: right;
+	margin-right: 20px;
+	padding: 0;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
+	font-size: 16px;
+ }
+ 
+ .call-out .newsBtn:hover{
+	box-shadow: 2px 8px 20px 2px rgba(0,0,0,0.2);
+	cursor:pointer;
+}
+
+
+.call-out:nth-child(1) {/*background-color: #c0dbe2;*/ background-color: #fff; margin: 0 20px 40px 20px;}
+.call-out:nth-child(2) {/*background-color: #cdf1c3;*/ background-color:darkgrey; margin: 0 20px 40px 20px;}
+.call-out:nth-child(3) {/*background-color: #ccb9da;*/ background-color: #fff; margin: 0 20px 40px 20px;}
+.call-out:nth-child(4) {/*background-color: #cce923;*/ background-color:bisque; margin: 0 20px 40px 20px;}
+
+.pagination a:link {
+    color: #333;
+    background-color: transparent;
+    text-decoration: none;
+}
+.pagination a:visited {
+    color: #333;
+}
+
+.pagination .arrow {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	border-top: 3px solid #333;
+	border-right: 3px solid #333;
+	cursor: pointer;
+	transition: border-color 0.3s ease-out;
+}
+/* */
+.pagination .arrow:hover {
+	border-color: gray;
+}
+/*  */
+.pagination .arrow-left {
+	margin-right: 15px;
+	left: 10px;
+	transform: rotate(225deg);
+}
+/* */
+.pagination .arrow-right {
+	margin-left: 15px;
+	right: 10px;
+	transform: rotate(45deg);
+}

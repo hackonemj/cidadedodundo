@@ -1,0 +1,1 @@
+web: gunicorn cidadedodundo.wsgi --log-file -

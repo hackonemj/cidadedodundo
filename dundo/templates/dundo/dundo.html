@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}Dundo{% endblock %}
+
+{% block conteudo %}
+  <style type="text/css">
+    #dundo{
+      background-color: #fff;
+    }
+    #dundo .section-content{
+      padding: 10px 0;
+    }
+
+  </style>
+  <section id="dundo">
+    <div class="section-content">
+      <div class="container">
+        <h3>Dundo</h3>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-columns">
+              <a href="/dundo/sobre">
+                <div class="card card-block">
+                  <h4 class="card-title">Sobre o Dundo</h4>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+              </a>
+          
+              <a href="/dundo/actualidades">
+                <div class="card card-block">
+                  <h4 class="card-title">Actualidades</h4>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+              </a>
+
+              <a href="/dundo/administracao">
+                <div class="card card-block">
+                  <h4 class="card-title">Administração</h4>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <hr>    
+      </div>
+    </div>
+  </section>
+{% endblock %}
